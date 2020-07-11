@@ -18,6 +18,8 @@ radius = 1.0
 
 [node name="left_hand" type="Area2D" parent="."]
 script = ExtResource( 1 )
+active_speed = 50.0
+passive_speed = 7.0
 
 [node name="arm" type="Sprite" parent="left_hand"]
 position = Vector2( -86.427, -39.1587 )
