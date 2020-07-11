@@ -9,7 +9,7 @@ var follow_mouse = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	self.position = home
 
 func travel_to(destination, speed):
 	if destination.distance_to(self.position) > speed:
