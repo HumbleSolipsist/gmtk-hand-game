@@ -35,7 +35,9 @@ func _input(event):
 		follow_mouse = not follow_mouse
 
 func _on_pointer_area_entered(area):
-	mouse_hover = true
+	if (area == self):
+		mouse_hover = true
 
 func _on_pointer_area_exited(area):
-	mouse_hover = false
+	if (area == self):
+		mouse_hover = false
