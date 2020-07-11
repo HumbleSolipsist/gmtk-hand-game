@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://LeftHand.gd" type="Script" id=1]
 [ext_resource path="res://assets/temp/arm.png" type="Texture" id=2]
 [ext_resource path="res://pointer.gd" type="Script" id=3]
 [ext_resource path="res://assets/temp/pointer.png" type="Texture" id=4]
+[ext_resource path="res://Enemy.gd" type="Script" id=5]
+[ext_resource path="res://assets/enemy/bug/bug_ouch.png" type="Texture" id=6]
+[ext_resource path="res://assets/enemy/bug/bug_stand.png" type="Texture" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 102.629
@@ -13,6 +16,9 @@ radius = 150.0
 
 [sub_resource type="CircleShape2D" id=3]
 radius = 1.0
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 100.0
 
 [node name="world" type="Node2D"]
 
@@ -60,9 +66,22 @@ shape = SubResource( 3 )
 [node name="sprite" type="Sprite" parent="pointer"]
 scale = Vector2( 0.01, 0.01 )
 texture = ExtResource( 4 )
-[connection signal="area_entered" from="left_hand" to="left_hand" method="_on_hand_area_entered"]
-[connection signal="area_exited" from="left_hand" to="left_hand" method="_on_hand_area_exited"]
-[connection signal="area_entered" from="right_hand" to="right_hand" method="_on_hand_area_entered"]
-[connection signal="area_exited" from="right_hand" to="right_hand" method="_on_hand_area_exited"]
+
+[node name="Enemy" type="Node2D" parent="."]
+position = Vector2( 529.83, 294.987 )
+z_index = -1
+script = ExtResource( 5 )
+
+[node name="bug_ouch" type="Sprite" parent="Enemy"]
+texture = ExtResource( 6 )
+
+[node name="bug_stand" type="Sprite" parent="Enemy"]
+texture = ExtResource( 7 )
+
+[node name="hitbox" type="Area2D" parent="Enemy"]
+position = Vector2( -18.6157, -143.197 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/hitbox"]
+shape = SubResource( 4 )
 [connection signal="area_entered" from="pointer" to="pointer" method="_on_pointer_area_entered"]
 [connection signal="area_exited" from="pointer" to="pointer" method="_on_pointer_area_exited"]

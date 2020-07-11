@@ -7,6 +7,8 @@ export (Vector2) var home
 var mouse_hover = false
 var follow_mouse = false
 
+var item = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self.position = home
