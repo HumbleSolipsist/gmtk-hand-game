@@ -67,7 +67,7 @@ shape = SubResource( 3 )
 scale = Vector2( 0.01, 0.01 )
 texture = ExtResource( 4 )
 
-[node name="Enemy" type="Node2D" parent="."]
+[node name="Enemy" type="Area2D" parent="."]
 position = Vector2( 529.83, 294.987 )
 z_index = -1
 script = ExtResource( 5 )
@@ -78,10 +78,12 @@ texture = ExtResource( 6 )
 [node name="bug_stand" type="Sprite" parent="Enemy"]
 texture = ExtResource( 7 )
 
-[node name="hitbox" type="Area2D" parent="Enemy"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
 position = Vector2( -18.6157, -143.197 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/hitbox"]
 shape = SubResource( 4 )
+[connection signal="area_entered" from="left_hand" to="left_hand" method="_on_left_hand_area_entered"]
+[connection signal="area_exited" from="left_hand" to="left_hand" method="_on_hand_area_exited"]
+[connection signal="area_entered" from="right_hand" to="right_hand" method="_on_hand_area_entered"]
+[connection signal="area_exited" from="right_hand" to="right_hand" method="_on_hand_area_exited"]
 [connection signal="area_entered" from="pointer" to="pointer" method="_on_pointer_area_entered"]
 [connection signal="area_exited" from="pointer" to="pointer" method="_on_pointer_area_exited"]

@@ -3,7 +3,7 @@ extends Node2D
 onready var ouch_sprite = $bug_ouch
 onready var idle_sprite = $bug_stand
 
-onready var hitbox = $hitbox
+#onready var hitbox = $hitbox
 
 enum STATE {
 	idle,
@@ -23,12 +23,11 @@ func _process(delta):
 		ouch_sprite.visible = false;
 		idle_sprite.visible = true;
 
-func hand_over(area):
-	if (area.item):
-		# do item.thing
+func hand_over(hand):
+	if (hand.item):
 		pass
 	else:
 		state = STATE.hurt
 
-func hand_off(area):
+func hand_off(hand):
 	pass

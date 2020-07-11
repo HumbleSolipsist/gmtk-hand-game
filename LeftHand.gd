@@ -43,6 +43,7 @@ func mouse_off(mouse_pointer):
 	mouse_hover = false
 
 func _on_hand_area_entered(area):
+	push_error("AREA_ENTERED")
 	if (area.has_method("hand_over")):
 		area.hand_over(self)
 
