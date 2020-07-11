@@ -1,9 +1,18 @@
-[gd_scene format=2]
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/temp/arm.png" type="Texture" id=1]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 124.741
 
 [node name="World" type="Node2D"]
 
 [node name="LeftHand" type="Area2D" parent="."]
 
-[node name="Sprite" type="Sprite" parent="LeftHand"]
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftHand"]
+shape = SubResource( 1 )
+
+[node name="arm" type="Sprite" parent="LeftHand"]
+position = Vector2( -122.302, -65.4669 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 1 )
