@@ -30,4 +30,4 @@ func hand_over(hand):
 		state = STATE.hurt
 
 func hand_off(hand):
-	pass
+	state = STATE.idle

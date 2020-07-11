@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://LeftHand.gd" type="Script" id=1]
+[ext_resource path="res://assets/temp/arm.png" type="Texture" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 102.629
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 65.1719
+
+[node name="left_hand" type="Area2D"]
+script = ExtResource( 1 )
+active_speed = 50.0
+passive_speed = 7.0
+
+[node name="arm" type="Sprite" parent="."]
+position = Vector2( -86.427, -39.1587 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+
+[node name="palm_hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="fingers_hitbox" type="CollisionShape2D" parent="."]
+position = Vector2( 86.5879, 51.6943 )
+shape = SubResource( 2 )
+[connection signal="area_entered" from="." to="." method="_on_hand_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_hand_area_exited"]
