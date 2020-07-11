@@ -34,8 +34,16 @@ func _input(event):
 	if mouse_hover and event is InputEventMouseButton:
 		follow_mouse = not follow_mouse
 
-func mouse_over():
+func mouse_over(mouse_pointer):
 	mouse_hover = true
 
-func mouse_off():
+func mouse_off(mouse_pointer):
 	mouse_hover = false
+
+func _on_hand_area_entered(area):
+	if (area.has_method("hand_over")):
+		area.hand_over(self)
+
+func _on_hand_area_exited(area):
+	if (area.has_method("hand_off")):
+		area.hand_off(self)
