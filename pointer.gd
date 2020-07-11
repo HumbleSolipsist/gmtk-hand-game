@@ -13,3 +13,12 @@ func _ready():
 
 func _process(delta):
 	self.go_to_mouse()
+
+func _on_pointer_area_entered(area):
+	if (area.has_method("mouse_over")):
+		area.mouse_over()
+
+
+func _on_pointer_area_exited(area):
+	if (area.has_method("mouse_off")):
+		area.mouse_off()

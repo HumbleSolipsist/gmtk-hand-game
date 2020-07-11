@@ -60,7 +60,5 @@ shape = SubResource( 3 )
 [node name="sprite" type="Sprite" parent="pointer"]
 scale = Vector2( 0.01, 0.01 )
 texture = ExtResource( 4 )
-[connection signal="area_entered" from="pointer" to="right_hand" method="_on_pointer_area_entered"]
-[connection signal="area_entered" from="pointer" to="left_hand" method="_on_pointer_area_entered"]
-[connection signal="area_exited" from="pointer" to="right_hand" method="_on_pointer_area_exited"]
-[connection signal="area_exited" from="pointer" to="left_hand" method="_on_pointer_area_exited"]
+[connection signal="area_entered" from="pointer" to="pointer" method="_on_pointer_area_entered"]
+[connection signal="area_exited" from="pointer" to="pointer" method="_on_pointer_area_exited"]

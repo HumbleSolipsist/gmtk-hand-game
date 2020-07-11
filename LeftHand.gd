@@ -34,10 +34,8 @@ func _input(event):
 	if mouse_hover and event is InputEventMouseButton:
 		follow_mouse = not follow_mouse
 
-func _on_pointer_area_entered(area):
-	if (area == self):
-		mouse_hover = true
+func mouse_over():
+	mouse_hover = true
 
-func _on_pointer_area_exited(area):
-	if (area == self):
-		mouse_hover = false
+func mouse_off():
+	mouse_hover = false
