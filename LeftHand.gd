@@ -4,6 +4,10 @@ export (float) var active_speed
 export (float) var passive_speed
 export (Vector2) var home
 
+onready var open_sprite = $open_sprite
+onready var closed_sprite = $closed_sprite
+onready var fingers_hitbox = $fingers_hitbox
+
 var mouse_hover = false
 var follow_mouse = false
 
@@ -12,6 +16,7 @@ var item = null
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self.position = home
+	open_hand()
 
 func travel_to(destination, speed):
 	if destination.distance_to(self.position) > speed:
@@ -26,11 +31,32 @@ func go_to_mouse():
 func go_home():
 	self.travel_to(self.home, passive_speed)
 
+func open_hand():
+	open_sprite.visible = true
+	closed_sprite.visible = false
+	fingers_hitbox.disabled = false
+
+func close_hand():
+	open_sprite.visible = false
+	closed_sprite.visible = true
+	fingers_hitbox.disabled = true
+
+func grab(item):
+	self.item = item
+	close_hand()
+
+func try_grab(item):
+	if not self.item:
+		self.grab(item)
+
 func _physics_process(delta):
 	if follow_mouse:
 		self.go_to_mouse()
 	else:
 		self.go_home()
+	
+	if item:
+		item.position = self.position
 	
 func _input(event):
 	if mouse_hover and event is InputEventMouseButton:
