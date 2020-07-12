@@ -14,6 +14,12 @@ func _ready():
 	randomize()
 	pass
 
+func blood_splat(location):
+	for i in range(1, 15):
+		var blood_drop = load("res://blood_drop.tscn").instance()
+		self.add_child(blood_drop)
+		blood_drop.position = location
+
 func make_new_item(path):
 	var new_item = load(path).instance()
 	self.add_child(new_item)

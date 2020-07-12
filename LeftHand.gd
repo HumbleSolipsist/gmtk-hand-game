@@ -107,10 +107,13 @@ func fall_off():
 	self.follow_mouse = false
 	self.mouse_hover = false
 	self.dead = true
+	
 	self.closed_hitbox.set_deferred("disabled", true)
 	self.open_hitbox.set_deferred("disabled", true)
 	self.thumb_hitbox.set_deferred("disabled", true)
 	$bone/bone_hitbox.set_deferred("disabled", true)
+	
+	get_node("/root/world").blood_splat($bone.get_global_transform().get_origin()) #+ self.position)
 
 func _on_bone_area_entered(area):
 	if area.name == self.tear_spot_name:
