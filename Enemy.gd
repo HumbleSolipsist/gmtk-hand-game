@@ -25,9 +25,12 @@ func _process(delta):
 
 func hand_over(hand):
 	if (hand.item):
-		pass
+		hand.item.hit(self)
 	else:
+		$smack_sound.play()
 		state = STATE.hurt
+		hand.close_hand()
 
 func hand_off(hand):
 	state = STATE.idle
+	hand.open_hand()

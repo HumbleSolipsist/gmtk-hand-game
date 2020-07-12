@@ -48,7 +48,7 @@ func close_hand():
 	closed_hitbox.disabled = false
 
 func drop_item():
-	self.item.held = false
+	self.item.held_by = null
 	self.item = null
 	open_hand()
 
@@ -59,11 +59,11 @@ func give_item():
 
 func grab(item):
 	self.item = item
-	item.held = true
+	item.held_by = self
 	close_hand()
 
 func try_grab(item):
-	if not self.item and not item.held:
+	if not self.item and not item.held_by:
 		self.grab(item)
 		return true
 	return false
@@ -79,7 +79,7 @@ func _physics_process(delta):
 	
 func _input(event):
 	if mouse_hover and event is InputEventMouseButton:
-		follow_mouse = not follow_mouse
+		follow_mouse = event.pressed
 
 func mouse_over(mouse_pointer):
 	mouse_hover = true
