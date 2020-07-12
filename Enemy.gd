@@ -24,13 +24,14 @@ func _process(delta):
 		idle_sprite.visible = true;
 
 func hand_over(hand):
+	state = STATE.hurt
 	if (hand.item):
 		hand.item.hit(self)
 	else:
 		$smack_sound.play()
-		state = STATE.hurt
 		hand.close_hand()
 
 func hand_off(hand):
 	state = STATE.idle
-	hand.open_hand()
+	if not hand.item:
+		hand.open_hand()

@@ -1,6 +1,7 @@
 extends Area2D
 
-var held_by
+var held_by = null
+var hit_count = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,6 +22,8 @@ func start_despawn_timer():
 	self.queue_free()
 
 func shatter():
+	self.held_by.drop_item()
+	self.held_by = true
 	$potion.visible = false
 	$potion_break.visible = true
 	$shatter_sound.play()
@@ -28,7 +31,7 @@ func shatter():
 	self.start_despawn_timer()
 
 func hit(enemy):
-	self.shatter()
-	self.position = enemy.position #- Vector2(rand_range(-100, 100), rand_range(-500,500))
-	self.held_by.drop_item()
-	self.held_by = true
+	$door_hit_sound.play()
+	self.hit_count += 1
+	if self.hit_count == 5:
+		self.shatter()

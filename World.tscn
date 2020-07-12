@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://assets/hall.png" type="Texture" id=2]
@@ -8,8 +8,12 @@
 [ext_resource path="res://potion.gd" type="Script" id=6]
 [ext_resource path="res://assets/items/potion/potion.png" type="Texture" id=7]
 [ext_resource path="res://assets/items/potion/potion_break.png" type="Texture" id=8]
-[ext_resource path="res://inventory.gd" type="Script" id=9]
-[ext_resource path="res://left_hand.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/sounds/steveygos93_jsbarrett_vial_smash.wav" type="AudioStream" id=9]
+[ext_resource path="res://plank.gd" type="Script" id=10]
+[ext_resource path="res://assets/items/plank/wood-plank.jpg" type="Texture" id=11]
+[ext_resource path="res://assets/sounds/tbone1999_doorhit.wav" type="AudioStream" id=12]
+[ext_resource path="res://inventory.gd" type="Script" id=13]
+[ext_resource path="res://left_hand.tscn" type="PackedScene" id=14]
 
 [sub_resource type="CircleShape2D" id=3]
 radius = 1.0
@@ -24,8 +28,11 @@ extents = Vector2( 84.6893, 33.8958 )
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 52.3123, 24.3829 )
 
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 25.5144, 221.83 )
+
 [sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 515.459, 13.2239 )
+extents = Vector2( 308.159, 13.2239 )
 
 [node name="world" type="Node2D"]
 script = ExtResource( 1 )
@@ -40,16 +47,19 @@ position = Vector2( 542.718, 335.918 )
 scale = Vector2( 0.7, 0.7 )
 
 [node name="pointer" type="Area2D" parent="."]
+editor/display_folded = true
 script = ExtResource( 4 )
 
 [node name="point" type="CollisionShape2D" parent="pointer"]
 shape = SubResource( 3 )
 
 [node name="sprite" type="Sprite" parent="pointer"]
+visible = false
 scale = Vector2( 0.01, 0.01 )
 texture = ExtResource( 5 )
 
 [node name="potion" type="Area2D" parent="."]
+editor/display_folded = true
 position = Vector2( 932.813, 495.557 )
 scale = Vector2( 0.5, 0.5 )
 z_index = 1
@@ -76,20 +86,39 @@ shape = SubResource( 5 )
 position = Vector2( 6.47546, 21.5847 )
 shape = SubResource( 6 )
 
+[node name="shatter_sound" type="AudioStreamPlayer" parent="potion"]
+stream = ExtResource( 9 )
+
+[node name="plank" type="Area2D" parent="."]
+position = Vector2( 282.216, 545.298 )
+z_index = 1
+script = ExtResource( 10 )
+
+[node name="wood-plank" type="Sprite" parent="plank"]
+rotation = 1.5708
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="plank"]
+shape = SubResource( 8 )
+
+[node name="door_hit_sound" type="AudioStreamPlayer" parent="plank"]
+stream = ExtResource( 12 )
+
 [node name="inventory" type="Area2D" parent="."]
 position = Vector2( 517, 600 )
-script = ExtResource( 9 )
+script = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="inventory"]
 position = Vector2( 0.00012207, 0 )
 shape = SubResource( 7 )
 
-[node name="left_hand" parent="." instance=ExtResource( 10 )]
-position = Vector2( 40, 200 )
+[node name="left_hand" parent="." instance=ExtResource( 14 )]
+position = Vector2( 80, 200 )
 rotation = -1.34565
 
-[node name="right_hand" parent="." instance=ExtResource( 10 )]
-position = Vector2( 984, 200 )
+[node name="right_hand" parent="." instance=ExtResource( 14 )]
+position = Vector2( 954, 200 )
 rotation = 1.34739
 scale = Vector2( -0.7, 0.7 )
 [connection signal="area_entered" from="pointer" to="pointer" method="_on_pointer_area_entered"]
