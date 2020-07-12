@@ -24,11 +24,11 @@ func shatter():
 	$potion.visible = false
 	$potion_break.visible = true
 	$shatter_sound.play()
-	self.z_index = 0
+	self.set_deferred('z_index', 0)
 	self.start_despawn_timer()
 
 func hit(enemy):
 	self.shatter()
-	self.position = enemy.position + Vector2(rand_range(-100, 100), rand_range(-300,300))
+	self.position = enemy.position + Vector2(rand_range(-50, 50), rand_range(-150,150))
 	self.held_by.drop_item()
 	self.held_by = true

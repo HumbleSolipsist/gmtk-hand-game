@@ -37,25 +37,16 @@ func open_hand():
 	open_sprite.visible = true
 	closed_sprite.visible = false
 	fingers_sprite.visible = false
-	open_hitbox.disabled = false
-	closed_hitbox.disabled = true
 
 func close_hand():
 	open_sprite.visible = false
 	closed_sprite.visible = true
 	fingers_sprite.visible = true
-	open_hitbox.disabled = true
-	closed_hitbox.disabled = false
 
 func drop_item():
 	self.item.held_by = null
 	self.item = null
 	open_hand()
-
-func give_item():
-	var temp = self.item
-	self.drop_item()
-	return temp
 
 func grab(item):
 	self.item = item

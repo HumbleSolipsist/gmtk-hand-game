@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://assets/hall.png" type="Texture" id=2]
@@ -16,24 +16,25 @@
 [ext_resource path="res://assets/items/staff/staff_broken.png" type="Texture" id=14]
 [ext_resource path="res://inventory.gd" type="Script" id=15]
 [ext_resource path="res://left_hand.tscn" type="PackedScene" id=16]
+[ext_resource path="res://assets/sounds/djsaryon_trevorlentz_battle_midi.wav" type="AudioStream" id=17]
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=1]
 radius = 1.0
 
-[sub_resource type="CapsuleShape2D" id=4]
+[sub_resource type="CapsuleShape2D" id=2]
 radius = 32.8861
 height = 84.0417
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 84.6893, 33.8958 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 52.3123, 24.3829 )
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 24.3294, 180.877 )
 
-[sub_resource type="CircleShape2D" id=9]
+[sub_resource type="CircleShape2D" id=6]
 radius = 63.0942
 
 [sub_resource type="RectangleShape2D" id=7]
@@ -56,7 +57,7 @@ editor/display_folded = true
 script = ExtResource( 4 )
 
 [node name="point" type="CollisionShape2D" parent="pointer"]
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="sprite" type="Sprite" parent="pointer"]
 visible = false
@@ -81,79 +82,17 @@ texture = ExtResource( 8 )
 
 [node name="tip_hitbox" type="CollisionShape2D" parent="potion"]
 position = Vector2( 8.63391, -43.1693 )
-shape = SubResource( 4 )
+shape = SubResource( 2 )
 
 [node name="base_hitbox" type="CollisionShape2D" parent="potion"]
 position = Vector2( 4.31689, 79.8635 )
-shape = SubResource( 5 )
+shape = SubResource( 3 )
 
 [node name="middle_hitbox" type="CollisionShape2D" parent="potion"]
 position = Vector2( 6.47546, 21.5847 )
-shape = SubResource( 6 )
+shape = SubResource( 4 )
 
 [node name="shatter_sound" type="AudioStreamPlayer" parent="potion"]
-stream = ExtResource( 9 )
-
-[node name="potion2" type="Area2D" parent="."]
-editor/display_folded = true
-position = Vector2( 767.552, 470.944 )
-scale = Vector2( 0.5, 0.5 )
-z_index = 1
-script = ExtResource( 6 )
-
-[node name="potion" type="Sprite" parent="potion2"]
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 7 )
-
-[node name="potion_break" type="Sprite" parent="potion2"]
-visible = false
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 8 )
-
-[node name="tip_hitbox" type="CollisionShape2D" parent="potion2"]
-position = Vector2( 8.63391, -43.1693 )
-shape = SubResource( 4 )
-
-[node name="base_hitbox" type="CollisionShape2D" parent="potion2"]
-position = Vector2( 4.31689, 79.8635 )
-shape = SubResource( 5 )
-
-[node name="middle_hitbox" type="CollisionShape2D" parent="potion2"]
-position = Vector2( 6.47546, 21.5847 )
-shape = SubResource( 6 )
-
-[node name="shatter_sound" type="AudioStreamPlayer" parent="potion2"]
-stream = ExtResource( 9 )
-
-[node name="potion3" type="Area2D" parent="."]
-editor/display_folded = true
-position = Vector2( 709.535, 502.589 )
-scale = Vector2( 0.5, 0.5 )
-z_index = 1
-script = ExtResource( 6 )
-
-[node name="potion" type="Sprite" parent="potion3"]
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 7 )
-
-[node name="potion_break" type="Sprite" parent="potion3"]
-visible = false
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 8 )
-
-[node name="tip_hitbox" type="CollisionShape2D" parent="potion3"]
-position = Vector2( 8.63391, -43.1693 )
-shape = SubResource( 4 )
-
-[node name="base_hitbox" type="CollisionShape2D" parent="potion3"]
-position = Vector2( 4.31689, 79.8635 )
-shape = SubResource( 5 )
-
-[node name="middle_hitbox" type="CollisionShape2D" parent="potion3"]
-position = Vector2( 6.47546, 21.5847 )
-shape = SubResource( 6 )
-
-[node name="shatter_sound" type="AudioStreamPlayer" parent="potion3"]
 stream = ExtResource( 9 )
 
 [node name="staff" type="Area2D" parent="."]
@@ -165,12 +104,12 @@ script = ExtResource( 10 )
 [node name="shaft_hitbox" type="CollisionShape2D" parent="staff"]
 visible = false
 position = Vector2( -26.3713, 50.9846 )
-shape = SubResource( 8 )
+shape = SubResource( 5 )
 
 [node name="top_hitbox" type="CollisionShape2D" parent="staff"]
 visible = false
 position = Vector2( 10.5486, -170.535 )
-shape = SubResource( 9 )
+shape = SubResource( 6 )
 
 [node name="door_hit_sound" type="AudioStreamPlayer" parent="staff"]
 stream = ExtResource( 11 )
@@ -182,35 +121,6 @@ stream = ExtResource( 12 )
 texture = ExtResource( 13 )
 
 [node name="staff_broken" type="Sprite" parent="staff"]
-visible = false
-texture = ExtResource( 14 )
-
-[node name="staff2" type="Area2D" parent="."]
-editor/display_folded = true
-position = Vector2( 319.972, 541.491 )
-z_index = 1
-script = ExtResource( 10 )
-
-[node name="shaft_hitbox" type="CollisionShape2D" parent="staff2"]
-visible = false
-position = Vector2( -26.3713, 50.9846 )
-shape = SubResource( 8 )
-
-[node name="top_hitbox" type="CollisionShape2D" parent="staff2"]
-visible = false
-position = Vector2( 10.5486, -170.535 )
-shape = SubResource( 9 )
-
-[node name="door_hit_sound" type="AudioStreamPlayer" parent="staff2"]
-stream = ExtResource( 11 )
-
-[node name="shatter_sound" type="AudioStreamPlayer" parent="staff2"]
-stream = ExtResource( 12 )
-
-[node name="staff" type="Sprite" parent="staff2"]
-texture = ExtResource( 13 )
-
-[node name="staff_broken" type="Sprite" parent="staff2"]
 visible = false
 texture = ExtResource( 14 )
 
@@ -226,16 +136,16 @@ shape = SubResource( 7 )
 [node name="left_hand" parent="." instance=ExtResource( 16 )]
 position = Vector2( 80, 200 )
 rotation = -1.34565
+passive_speed = 11.0
 
 [node name="right_hand" parent="." instance=ExtResource( 16 )]
 position = Vector2( 954, 200 )
 rotation = 1.34739
-scale = Vector2( -0.7, 0.7 )
+scale = Vector2( -0.6, 0.6 )
+passive_speed = 11.0
+
+[node name="bg_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 17 )
+volume_db = -5.0
 [connection signal="area_entered" from="pointer" to="pointer" method="_on_pointer_area_entered"]
 [connection signal="area_exited" from="pointer" to="pointer" method="_on_pointer_area_exited"]
-[connection signal="area_entered" from="potion" to="potion" method="_on_potion_area_entered"]
-[connection signal="area_exited" from="potion" to="potion" method="_on_potion_area_exited"]
-[connection signal="area_entered" from="potion2" to="potion2" method="_on_potion_area_entered"]
-[connection signal="area_exited" from="potion2" to="potion2" method="_on_potion_area_exited"]
-[connection signal="area_entered" from="potion3" to="potion3" method="_on_potion_area_entered"]
-[connection signal="area_exited" from="potion3" to="potion3" method="_on_potion_area_exited"]

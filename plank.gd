@@ -33,5 +33,5 @@ func shatter():
 func hit(enemy):
 	$door_hit_sound.play()
 	self.hit_count += 1
-	if rand_range(0, self.hit_count) > 3:
+	if rand_range(0, self.hit_count) > 1.8:
 		self.shatter()
