@@ -41,6 +41,15 @@ func close_hand():
 	closed_sprite.visible = true
 	fingers_hitbox.disabled = true
 
+func drop_item():
+	self.item = null
+	open_hand()
+
+func give_item():
+	var temp = self.item
+	self.drop_item()
+	return temp
+
 func grab(item):
 	self.item = item
 	close_hand()

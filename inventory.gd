@@ -1,4 +1,4 @@
-extends Node2D
+extends Area2D
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -6,8 +6,15 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$inventory.add($potion)
+	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+func add(item):
+	item.position = self.position - Vector2(0, 100)
+
+func hand_over(hand):
+	if hand.item:
+		self.add(hand.give_item())
