@@ -17,6 +17,7 @@ extents = Vector2( 52.3123, 24.3829 )
 
 [node name="potion" type="Area2D"]
 editor/display_folded = true
+position = Vector2( 0, -30 )
 scale = Vector2( 0.5, 0.5 )
 z_index = 1
 script = ExtResource( 1 )

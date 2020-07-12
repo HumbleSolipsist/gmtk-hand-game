@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/josepharaoh99_game_die.wav-df90d1fd388a907a460558cb3e2cab75.sample"
+
+[deps]
+
+source_file="res://assets/sounds/josepharaoh99_game_die.wav"
+dest_files=[ "res://.import/josepharaoh99_game_die.wav-df90d1fd388a907a460558cb3e2cab75.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

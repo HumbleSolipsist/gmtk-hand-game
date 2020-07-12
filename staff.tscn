@@ -13,7 +13,7 @@ extents = Vector2( 24.3294, 180.877 )
 radius = 63.0942
 
 [node name="staff" type="Area2D"]
-editor/display_folded = true
+position = Vector2( 0, 50 )
 z_index = 1
 script = ExtResource( 1 )
 
