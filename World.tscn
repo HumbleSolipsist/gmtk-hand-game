@@ -171,6 +171,7 @@ centered = false
 [node name="slide3" type="AnimatedSprite" parent="opening_screen"]
 visible = false
 frames = SubResource( 7 )
+frame = 1
 playing = true
 centered = false
 
