@@ -152,14 +152,13 @@ script = ExtResource( 11 )
 [node name="slide1" type="AnimatedSprite" parent="opening_screen"]
 visible = false
 frames = SubResource( 5 )
-frame = 2
 playing = true
 centered = false
 
 [node name="slide2" type="AnimatedSprite" parent="opening_screen"]
 visible = false
 frames = SubResource( 6 )
-frame = 1
+frame = 2
 playing = true
 centered = false
 
@@ -177,6 +176,7 @@ script = ExtResource( 20 )
 
 [node name="slide" type="AnimatedSprite" parent="end_screen"]
 frames = SubResource( 8 )
+frame = 1
 playing = true
 centered = false
 

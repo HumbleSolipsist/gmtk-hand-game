@@ -22,6 +22,8 @@ func make_new_item(path):
 	return new_item
 
 func _physics_process(delta):
+	if get_node("/root/world").has_node("opening_screen") or get_node("/root/world/end_screen").visible:
+		return
 	time_to_potion -= delta
 	time_to_staff -= delta
 	if (time_to_potion <= 0):
