@@ -81,8 +81,9 @@ func _physics_process(delta):
 			self.go_home()
 	if item:
 		item.position = self.position
-	
 func _input(event):
+	if get_node("/root/world").has_node("opening_screen"):
+		return
 	if mouse_hover and event is InputEventMouseButton:
 		follow_mouse = event.pressed
 

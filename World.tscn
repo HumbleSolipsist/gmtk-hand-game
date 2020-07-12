@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://assets/hall.png" type="Texture" id=2]
@@ -10,18 +10,64 @@
 [ext_resource path="res://inventory.gd" type="Script" id=8]
 [ext_resource path="res://left_hand.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/sounds/djsaryon_trevorlentz_battle_midi.wav" type="AudioStream" id=10]
+[ext_resource path="res://opening_screen.gd" type="Script" id=11]
+[ext_resource path="res://assets/card1a.png" type="Texture" id=12]
+[ext_resource path="res://assets/card1b.png" type="Texture" id=13]
+[ext_resource path="res://assets/card1c.png" type="Texture" id=14]
+[ext_resource path="res://assets/card2a.png" type="Texture" id=15]
+[ext_resource path="res://assets/card2b.png" type="Texture" id=16]
+[ext_resource path="res://assets/card2c.png" type="Texture" id=17]
+[ext_resource path="res://assets/card3a.png" type="Texture" id=18]
+[ext_resource path="res://assets/card3b.png" type="Texture" id=19]
+[ext_resource path="res://end_screen.gd" type="Script" id=20]
+[ext_resource path="res://assets/end1.png" type="Texture" id=21]
+[ext_resource path="res://assets/end2.png" type="Texture" id=22]
+[ext_resource path="res://assets/end3.png" type="Texture" id=23]
+[ext_resource path="res://assets/sounds/josepharaoh99_game_die.wav" type="AudioStream" id=24]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 1.0
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 308.159, 13.2239 )
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 52.8813, 510.267 )
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 51.1233, 540.155 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ ExtResource( 18 ), ExtResource( 19 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [node name="world" type="Node2D"]
 script = ExtResource( 1 )
@@ -66,7 +112,7 @@ script = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="inventory"]
 position = Vector2( 0.00012207, 0 )
-shape = SubResource( 7 )
+shape = SubResource( 2 )
 
 [node name="left_hand" parent="." instance=ExtResource( 9 )]
 position = Vector2( 80, 200 )
@@ -90,12 +136,51 @@ volume_db = -5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tear_spot_left"]
 position = Vector2( 135.373, 272.504 )
-shape = SubResource( 8 )
+shape = SubResource( 3 )
 
 [node name="tear_spot_right" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tear_spot_right"]
 position = Vector2( 889.592, 314.698 )
-shape = SubResource( 9 )
+shape = SubResource( 4 )
+
+[node name="opening_screen" type="Node2D" parent="."]
+z_index = 4096
+z_as_relative = false
+script = ExtResource( 11 )
+
+[node name="slide1" type="AnimatedSprite" parent="opening_screen"]
+visible = false
+frames = SubResource( 5 )
+frame = 2
+playing = true
+centered = false
+
+[node name="slide2" type="AnimatedSprite" parent="opening_screen"]
+visible = false
+frames = SubResource( 6 )
+frame = 1
+playing = true
+centered = false
+
+[node name="slide3" type="AnimatedSprite" parent="opening_screen"]
+visible = false
+frames = SubResource( 7 )
+playing = true
+centered = false
+
+[node name="end_screen" type="Node2D" parent="."]
+visible = false
+z_index = 4096
+z_as_relative = false
+script = ExtResource( 20 )
+
+[node name="slide" type="AnimatedSprite" parent="end_screen"]
+frames = SubResource( 8 )
+playing = true
+centered = false
+
+[node name="lose_sfx" type="AudioStreamPlayer" parent="end_screen"]
+stream = ExtResource( 24 )
 [connection signal="area_entered" from="pointer" to="pointer" method="_on_pointer_area_entered"]
 [connection signal="area_exited" from="pointer" to="pointer" method="_on_pointer_area_exited"]
