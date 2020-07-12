@@ -32,37 +32,32 @@ rotation = 1.5708
 texture = ExtResource( 2 )
 
 [node name="arm_closed_bottom" type="Sprite" parent="."]
-visible = false
 position = Vector2( 22.409, -382.414 )
 rotation = 1.5708
 texture = ExtResource( 3 )
 
 [node name="arm_closed_top" type="Sprite" parent="."]
-visible = false
 position = Vector2( -3.335, 60.077 )
 rotation = 1.5708
 z_index = 2
 texture = ExtResource( 4 )
 
 [node name="open_hand_hitbox" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( -3.302, 27.192 )
 shape = SubResource( 1 )
 
 [node name="thumb_hitbox" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( 65.763, 21.14 )
 shape = SubResource( 2 )
 
 [node name="closed_hand_hitbox" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( 0, -20 )
 shape = SubResource( 3 )
 
 [node name="bone" type="Area2D" parent="."]
+position = Vector2( 102.244, -1003.5 )
 
 [node name="bone_hitbox" type="CollisionShape2D" parent="bone"]
-position = Vector2( 102.244, -1003.5 )
 shape = SubResource( 4 )
 
 [node name="tear_sound" type="AudioStreamPlayer" parent="."]
