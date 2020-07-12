@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://splat.gd" type="Script" id=1]
+[ext_resource path="res://assets/splats/lame.png" type="Texture" id=2]
+[ext_resource path="res://assets/splats/lotta_damage.png" type="Texture" id=3]
+[ext_resource path="res://assets/splats/meh.png" type="Texture" id=4]
+[ext_resource path="res://assets/splats/oof.png" type="Texture" id=5]
+[ext_resource path="res://assets/splats/ouch.png" type="Texture" id=6]
+[ext_resource path="res://assets/splats/wow.png" type="Texture" id=7]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[node name="splat" type="RigidBody2D"]
+gravity_scale = 50.0
+can_sleep = false
+script = ExtResource( 1 )
+
+[node name="lame" type="Sprite" parent="."]
+visible = false
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 2 )
+
+[node name="lotta_damage" type="Sprite" parent="."]
+visible = false
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 3 )
+
+[node name="meh" type="Sprite" parent="."]
+visible = false
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 4 )
+
+[node name="oof" type="Sprite" parent="."]
+visible = false
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 5 )
+
+[node name="ouch" type="Sprite" parent="."]
+visible = false
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 6 )
+
+[node name="wow" type="Sprite" parent="."]
+visible = false
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+disabled = true

@@ -35,10 +35,16 @@ func hand_over(hand):
 	if (hand.item):
 		hand.item.hit(self)
 		shakes = shakes + 50;
+		var new_splat = load("res://splat.tscn").instance()
+		self.add_child(new_splat)
+		new_splat.init('hit')
 	else:
 		$smack_sound.play()
 		shakes = shakes + 25;
 		hand.close_hand()
+		var new_splat = load("res://splat.tscn").instance()
+		self.add_child(new_splat)
+		new_splat.init('miss')
 
 func hand_off(hand):
 	state = STATE.idle
