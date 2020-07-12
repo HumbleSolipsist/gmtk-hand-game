@@ -24,8 +24,8 @@ func start_despawn_timer():
 func shatter():
 	self.held_by.drop_item()
 	self.held_by = true
-	$potion.visible = false
-	$potion_break.visible = true
+	$staff.visible = false
+	$staff_broken.visible = true
 	$shatter_sound.play()
 	self.z_index = 0
 	self.start_despawn_timer()
@@ -33,5 +33,5 @@ func shatter():
 func hit(enemy):
 	$door_hit_sound.play()
 	self.hit_count += 1
-	if self.hit_count == 5:
+	if rand_range(0, self.hit_count) > 3:
 		self.shatter()

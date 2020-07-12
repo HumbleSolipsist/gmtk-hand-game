@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://assets/hall.png" type="Texture" id=2]
@@ -10,10 +10,12 @@
 [ext_resource path="res://assets/items/potion/potion_break.png" type="Texture" id=8]
 [ext_resource path="res://assets/sounds/steveygos93_jsbarrett_vial_smash.wav" type="AudioStream" id=9]
 [ext_resource path="res://plank.gd" type="Script" id=10]
-[ext_resource path="res://assets/items/plank/wood-plank.jpg" type="Texture" id=11]
-[ext_resource path="res://assets/sounds/tbone1999_doorhit.wav" type="AudioStream" id=12]
-[ext_resource path="res://inventory.gd" type="Script" id=13]
-[ext_resource path="res://left_hand.tscn" type="PackedScene" id=14]
+[ext_resource path="res://assets/sounds/tbone1999_doorhit.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/sounds/ssierra1202_wood_destruction.wav" type="AudioStream" id=12]
+[ext_resource path="res://assets/items/staff/staff.png" type="Texture" id=13]
+[ext_resource path="res://assets/items/staff/staff_broken.png" type="Texture" id=14]
+[ext_resource path="res://inventory.gd" type="Script" id=15]
+[ext_resource path="res://left_hand.tscn" type="PackedScene" id=16]
 
 [sub_resource type="CircleShape2D" id=3]
 radius = 1.0
@@ -29,7 +31,10 @@ extents = Vector2( 84.6893, 33.8958 )
 extents = Vector2( 52.3123, 24.3829 )
 
 [sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 25.5144, 221.83 )
+extents = Vector2( 24.3294, 180.877 )
+
+[sub_resource type="CircleShape2D" id=9]
+radius = 63.0942
 
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 308.159, 13.2239 )
@@ -89,35 +94,140 @@ shape = SubResource( 6 )
 [node name="shatter_sound" type="AudioStreamPlayer" parent="potion"]
 stream = ExtResource( 9 )
 
-[node name="plank" type="Area2D" parent="."]
-position = Vector2( 282.216, 545.298 )
+[node name="potion2" type="Area2D" parent="."]
+editor/display_folded = true
+position = Vector2( 767.552, 470.944 )
+scale = Vector2( 0.5, 0.5 )
+z_index = 1
+script = ExtResource( 6 )
+
+[node name="potion" type="Sprite" parent="potion2"]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 7 )
+
+[node name="potion_break" type="Sprite" parent="potion2"]
+visible = false
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 8 )
+
+[node name="tip_hitbox" type="CollisionShape2D" parent="potion2"]
+position = Vector2( 8.63391, -43.1693 )
+shape = SubResource( 4 )
+
+[node name="base_hitbox" type="CollisionShape2D" parent="potion2"]
+position = Vector2( 4.31689, 79.8635 )
+shape = SubResource( 5 )
+
+[node name="middle_hitbox" type="CollisionShape2D" parent="potion2"]
+position = Vector2( 6.47546, 21.5847 )
+shape = SubResource( 6 )
+
+[node name="shatter_sound" type="AudioStreamPlayer" parent="potion2"]
+stream = ExtResource( 9 )
+
+[node name="potion3" type="Area2D" parent="."]
+editor/display_folded = true
+position = Vector2( 709.535, 502.589 )
+scale = Vector2( 0.5, 0.5 )
+z_index = 1
+script = ExtResource( 6 )
+
+[node name="potion" type="Sprite" parent="potion3"]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 7 )
+
+[node name="potion_break" type="Sprite" parent="potion3"]
+visible = false
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 8 )
+
+[node name="tip_hitbox" type="CollisionShape2D" parent="potion3"]
+position = Vector2( 8.63391, -43.1693 )
+shape = SubResource( 4 )
+
+[node name="base_hitbox" type="CollisionShape2D" parent="potion3"]
+position = Vector2( 4.31689, 79.8635 )
+shape = SubResource( 5 )
+
+[node name="middle_hitbox" type="CollisionShape2D" parent="potion3"]
+position = Vector2( 6.47546, 21.5847 )
+shape = SubResource( 6 )
+
+[node name="shatter_sound" type="AudioStreamPlayer" parent="potion3"]
+stream = ExtResource( 9 )
+
+[node name="staff" type="Area2D" parent="."]
+editor/display_folded = true
+position = Vector2( 219.761, 529.185 )
 z_index = 1
 script = ExtResource( 10 )
 
-[node name="wood-plank" type="Sprite" parent="plank"]
-rotation = 1.5708
-scale = Vector2( 0.7, 0.7 )
-texture = ExtResource( 11 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="plank"]
+[node name="shaft_hitbox" type="CollisionShape2D" parent="staff"]
+visible = false
+position = Vector2( -26.3713, 50.9846 )
 shape = SubResource( 8 )
 
-[node name="door_hit_sound" type="AudioStreamPlayer" parent="plank"]
+[node name="top_hitbox" type="CollisionShape2D" parent="staff"]
+visible = false
+position = Vector2( 10.5486, -170.535 )
+shape = SubResource( 9 )
+
+[node name="door_hit_sound" type="AudioStreamPlayer" parent="staff"]
+stream = ExtResource( 11 )
+
+[node name="shatter_sound" type="AudioStreamPlayer" parent="staff"]
 stream = ExtResource( 12 )
 
+[node name="staff" type="Sprite" parent="staff"]
+texture = ExtResource( 13 )
+
+[node name="staff_broken" type="Sprite" parent="staff"]
+visible = false
+texture = ExtResource( 14 )
+
+[node name="staff2" type="Area2D" parent="."]
+editor/display_folded = true
+position = Vector2( 319.972, 541.491 )
+z_index = 1
+script = ExtResource( 10 )
+
+[node name="shaft_hitbox" type="CollisionShape2D" parent="staff2"]
+visible = false
+position = Vector2( -26.3713, 50.9846 )
+shape = SubResource( 8 )
+
+[node name="top_hitbox" type="CollisionShape2D" parent="staff2"]
+visible = false
+position = Vector2( 10.5486, -170.535 )
+shape = SubResource( 9 )
+
+[node name="door_hit_sound" type="AudioStreamPlayer" parent="staff2"]
+stream = ExtResource( 11 )
+
+[node name="shatter_sound" type="AudioStreamPlayer" parent="staff2"]
+stream = ExtResource( 12 )
+
+[node name="staff" type="Sprite" parent="staff2"]
+texture = ExtResource( 13 )
+
+[node name="staff_broken" type="Sprite" parent="staff2"]
+visible = false
+texture = ExtResource( 14 )
+
 [node name="inventory" type="Area2D" parent="."]
+editor/display_folded = true
 position = Vector2( 517, 600 )
-script = ExtResource( 13 )
+script = ExtResource( 15 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="inventory"]
 position = Vector2( 0.00012207, 0 )
 shape = SubResource( 7 )
 
-[node name="left_hand" parent="." instance=ExtResource( 14 )]
+[node name="left_hand" parent="." instance=ExtResource( 16 )]
 position = Vector2( 80, 200 )
 rotation = -1.34565
 
-[node name="right_hand" parent="." instance=ExtResource( 14 )]
+[node name="right_hand" parent="." instance=ExtResource( 16 )]
 position = Vector2( 954, 200 )
 rotation = 1.34739
 scale = Vector2( -0.7, 0.7 )
@@ -125,3 +235,7 @@ scale = Vector2( -0.7, 0.7 )
 [connection signal="area_exited" from="pointer" to="pointer" method="_on_pointer_area_exited"]
 [connection signal="area_entered" from="potion" to="potion" method="_on_potion_area_entered"]
 [connection signal="area_exited" from="potion" to="potion" method="_on_potion_area_exited"]
+[connection signal="area_entered" from="potion2" to="potion2" method="_on_potion_area_entered"]
+[connection signal="area_exited" from="potion2" to="potion2" method="_on_potion_area_exited"]
+[connection signal="area_entered" from="potion3" to="potion3" method="_on_potion_area_entered"]
+[connection signal="area_exited" from="potion3" to="potion3" method="_on_potion_area_exited"]

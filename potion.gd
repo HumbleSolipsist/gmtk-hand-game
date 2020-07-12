@@ -29,6 +29,6 @@ func shatter():
 
 func hit(enemy):
 	self.shatter()
-	self.position = enemy.position #- Vector2(rand_range(-100, 100), rand_range(-500,500))
+	self.position = enemy.position + Vector2(rand_range(-100, 100), rand_range(-300,300))
 	self.held_by.drop_item()
 	self.held_by = true
