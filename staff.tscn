@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://plank.gd" type="Script" id=1]
+[ext_resource path="res://assets/sounds/tbone1999_doorhit.wav" type="AudioStream" id=2]
+[ext_resource path="res://assets/sounds/ssierra1202_wood_destruction.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/items/staff/staff.png" type="Texture" id=4]
+[ext_resource path="res://assets/items/staff/staff_broken.png" type="Texture" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 24.3294, 180.877 )
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 63.0942
+
+[node name="staff" type="Area2D"]
+editor/display_folded = true
+z_index = 1
+script = ExtResource( 1 )
+
+[node name="shaft_hitbox" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( -26.3713, 50.9846 )
+shape = SubResource( 1 )
+
+[node name="top_hitbox" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 10.5486, -170.535 )
+shape = SubResource( 2 )
+
+[node name="door_hit_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+
+[node name="shatter_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[node name="staff" type="Sprite" parent="."]
+texture = ExtResource( 4 )
+
+[node name="staff_broken" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 5 )

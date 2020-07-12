@@ -17,7 +17,7 @@ func hand_off(hand):
 	pass
 
 func start_despawn_timer():
-	yield(get_tree().create_timer(2),"timeout")
+	yield(get_tree().create_timer(3),"timeout")
 	self.queue_free()
 
 func shatter():
