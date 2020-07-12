@@ -2,11 +2,13 @@ extends Area2D
 
 export (float) var active_speed
 export (float) var passive_speed
-export (Vector2) var home
 
-onready var open_sprite = $open_sprite
-onready var closed_sprite = $closed_sprite
-onready var fingers_hitbox = $fingers_hitbox
+var home
+onready var open_sprite = $arm_open
+onready var closed_sprite = $arm_closed_bottom
+onready var fingers_sprite = $arm_closed_top
+onready var open_hitbox = $open_hand_hitbox
+onready var closed_hitbox = $closed_hand_hitbox
 
 var mouse_hover = false
 var follow_mouse = false
@@ -15,7 +17,7 @@ var item = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self.position = home
+	self.home = self.position
 	open_hand()
 
 func travel_to(destination, speed):
@@ -34,14 +36,19 @@ func go_home():
 func open_hand():
 	open_sprite.visible = true
 	closed_sprite.visible = false
-	fingers_hitbox.disabled = false
+	fingers_sprite.visible = false
+	open_hitbox.disabled = false
+	closed_hitbox.disabled = true
 
 func close_hand():
 	open_sprite.visible = false
 	closed_sprite.visible = true
-	fingers_hitbox.disabled = true
+	fingers_sprite.visible = true
+	open_hitbox.disabled = true
+	closed_hitbox.disabled = false
 
 func drop_item():
+	self.item.held = false
 	self.item = null
 	open_hand()
 
@@ -52,11 +59,14 @@ func give_item():
 
 func grab(item):
 	self.item = item
+	item.held = true
 	close_hand()
 
 func try_grab(item):
-	if not self.item:
+	if not self.item and not item.held:
 		self.grab(item)
+		return true
+	return false
 
 func _physics_process(delta):
 	if follow_mouse:

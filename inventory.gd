@@ -12,9 +12,6 @@ func _ready():
 #func _process(delta):
 #	pass
 
-func add(item):
-	item.position = self.position - Vector2(0, 100)
-
 func hand_over(hand):
 	if hand.item:
-		self.add(hand.give_item())
+		hand.drop_item()
