@@ -1,52 +1,48 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://World.gd" type="Script" id=1]
+[ext_resource path="res://left_hand.tscn" type="PackedScene" id=1]
 [ext_resource path="res://lady_bug.tscn" type="PackedScene" id=2]
 [ext_resource path="res://pointer.gd" type="Script" id=3]
 [ext_resource path="res://assets/temp/pointer.png" type="Texture" id=4]
 [ext_resource path="res://potion.gd" type="Script" id=5]
 [ext_resource path="res://assets/items/potion/potion.png" type="Texture" id=6]
 [ext_resource path="res://assets/items/potion/potion_break.png" type="Texture" id=7]
-[ext_resource path="res://inventory.gd" type="Script" id=8]
-[ext_resource path="res://left_hand.tscn" type="PackedScene" id=9]
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=1]
 radius = 1.0
 
-[sub_resource type="CapsuleShape2D" id=4]
+[sub_resource type="CapsuleShape2D" id=2]
 radius = 32.8861
 height = 84.0417
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 84.6893, 33.8958 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 52.3123, 24.3829 )
 
-[sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 515.459, 29.4966 )
-
 [node name="world" type="Node2D"]
-script = ExtResource( 1 )
+
+[node name="left_hand" parent="." instance=ExtResource( 1 )]
+
+[node name="right_hand" parent="." instance=ExtResource( 1 )]
+rotation = -3.14159
+scale = Vector2( 1, -1 )
+home = Vector2( 1024, 0 )
 
 [node name="first_enemy" parent="." instance=ExtResource( 2 )]
-position = Vector2( 529.83, 250 )
-scale = Vector2( 0.8, 0.8 )
 
 [node name="pointer" type="Area2D" parent="."]
 script = ExtResource( 3 )
 
 [node name="point" type="CollisionShape2D" parent="pointer"]
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="sprite" type="Sprite" parent="pointer"]
 scale = Vector2( 0.01, 0.01 )
 texture = ExtResource( 4 )
 
 [node name="potion" type="Area2D" parent="."]
-position = Vector2( 932.813, 495.557 )
-scale = Vector2( 0.7, 0.7 )
-z_index = 1
 script = ExtResource( 5 )
 
 [node name="potion" type="Sprite" parent="potion"]
@@ -60,31 +56,14 @@ texture = ExtResource( 7 )
 
 [node name="tip_hitbox" type="CollisionShape2D" parent="potion"]
 position = Vector2( 8.63391, -43.1693 )
-shape = SubResource( 4 )
+shape = SubResource( 2 )
 
 [node name="base_hitbox" type="CollisionShape2D" parent="potion"]
 position = Vector2( 4.31689, 79.8635 )
-shape = SubResource( 5 )
+shape = SubResource( 3 )
 
 [node name="middle_hitbox" type="CollisionShape2D" parent="potion"]
 position = Vector2( 6.47546, 21.5847 )
-shape = SubResource( 6 )
-
-[node name="inventory" type="Area2D" parent="."]
-position = Vector2( 517, 600 )
-script = ExtResource( 8 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="inventory"]
-position = Vector2( 0.00012207, 0 )
-shape = SubResource( 7 )
-
-[node name="left_hand" parent="." instance=ExtResource( 9 )]
-position = Vector2( 40, 60 )
-rotation = -1.34565
-
-[node name="right_hand" parent="." instance=ExtResource( 9 )]
-position = Vector2( 984, 60 )
-rotation = 1.34739
-scale = Vector2( -0.7, 0.7 )
+shape = SubResource( 4 )
 [connection signal="area_entered" from="pointer" to="pointer" method="_on_pointer_area_entered"]
 [connection signal="area_exited" from="pointer" to="pointer" method="_on_pointer_area_exited"]
