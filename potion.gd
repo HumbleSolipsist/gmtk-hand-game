@@ -2,13 +2,10 @@ extends Area2D
 
 var held_by
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+onready var parent = get_node("..")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _ready():
+	parent.potion_count += 1
 
 func hand_over(hand):
 	hand.try_grab(self)
@@ -26,6 +23,7 @@ func shatter():
 	$shatter_sound.play()
 	self.set_deferred('z_index', 0)
 	self.start_despawn_timer()
+	parent.potion_count -= 1
 
 func hit(enemy):
 	self.shatter()

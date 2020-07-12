@@ -3,9 +3,11 @@ extends Area2D
 var held_by = null
 var hit_count = 0
 
+onready var parent = get_node("..")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	parent.staff_count += 1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -29,6 +31,7 @@ func shatter():
 	$shatter_sound.play()
 	self.z_index = 0
 	self.start_despawn_timer()
+	parent.staff_count -= 1
 
 func hit(enemy):
 	$door_hit_sound.play()

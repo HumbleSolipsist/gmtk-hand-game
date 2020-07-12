@@ -1,10 +1,13 @@
 extends Node2D
 
-const staff_gap = 5.0
-const potion_gap = 3.0
+const staff_gap = 3.0
+const potion_gap = 1.0
 
 onready var time_to_staff = staff_gap
 onready var time_to_potion = potion_gap
+
+var potion_count = 0
+var staff_count = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,10 +25,10 @@ func make_new_item(path):
 	return new_item
 
 func _physics_process(delta):
-	if get_node("/root/world").has_node("opening_screen") or get_node("/root/world/end_screen").visible:
+	if self.has_node("opening_screen") or get_node("/root/world/end_screen").visible:
 		return
-	time_to_potion -= delta
-	time_to_staff -= delta
+	time_to_potion -= delta / (potion_count + 1)
+	time_to_staff -= delta / (staff_count + 1)
 	if (time_to_potion <= 0):
 		time_to_potion += potion_gap
 		self.make_new_item("res://potion.tscn")
